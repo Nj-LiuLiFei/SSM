@@ -49,7 +49,7 @@
         <property name="filters" value="stat,wall"/>
     </bean>
 
-    <!-- 4.配置和MyBatis的整合，创建SqlSessionFactory，同时指定数据源 -->
+    <!-- 配置和MyBatis的整合，创建SqlSessionFactory，同时指定数据源 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据源 -->
         <property name="dataSource" ref="dataSource"></property>
@@ -60,7 +60,7 @@
     </bean>
 
 
-    <!-- 在mapper 注入 sqlSessionFactory ，不然回报autowire失败 -->
+    <!-- 在mapper 注入 sqlSessionFactory ，不然会报autowire失败 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.ssm.mapper" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
@@ -77,14 +77,14 @@
         </property>
     </bean>
 
-    <!-- pointcut-ref="druid-stat-pointcut" 报错，不用管，可以正常运行和记录 -->
+    <!-- pointcut-ref="druid-stat-pointcut" idea报错，不用管他，可以正常运行和记录 -->
     <aop:config>
         <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
     </aop:config>
 
     <!-- 开启事务注解驱动 -->
     <tx:annotation-driven />
-    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <!-- (事务管理) jdbc层，固定写法 org.springframework.jdbc.datasource.DataSourceTransactionManager-->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
