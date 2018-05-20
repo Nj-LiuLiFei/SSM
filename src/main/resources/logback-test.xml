@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 配置变量 -->
+    <property name = "LOGGER_ERROR_FILE_PATH" value = "../logs/ssm-info.log" />
+    <property name = "ROOT_DEBUG_FILE_PATH" value = "../logs/ssm-debug.log" />
+
+
+
+    <appender name="ERROR-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOGGER_ERROR_FILE_PATH}</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ROOT-DEBUG-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${ROOT_DEBUG_FILE_PATH}</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.ssm.mapper" level="DEBUG">
+        <appender-ref ref="ERROR-FILE" />
+    </logger>
+
+    <logger name="com.ssm.service.impl" level="INFO">
+        <appender-ref ref="ERROR-FILE" />
+    </logger>
+
+
+    <root level="DEBUG">
+        <appender-ref ref="ROOT-DEBUG-FILE" />
+    </root>
+</configuration>
