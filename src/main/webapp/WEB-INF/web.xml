@@ -20,6 +20,8 @@
   </listener>
 
 
+
+
   <!--  springMVC请求基础配置  开始-->
   <servlet>
     <servlet-name>DispatcherServlet</servlet-name>
@@ -95,5 +97,12 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <!--  阿里巴巴连接处配置 结束 -->
+
+
+  <!-- logback日志 开始-->
+<!--  <listener>
+    <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+  </listener>-->
+  <!-- logback日志 结束-->
 
 </web-app>
